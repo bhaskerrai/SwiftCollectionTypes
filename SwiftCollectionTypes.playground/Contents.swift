@@ -85,3 +85,169 @@ print("\n")
 for (indx,item) in car.enumerated() {
     print("Item \(indx+1): \(item)")
 }
+
+
+//“Sets
+//A set stores distinct values of the same type in a collection with no defined ordering. You can use a set instead of an array when the order of items isn’t important, or when you need to ensure that an item only appea”
+
+//“Set Type Syntax
+//The type of a Swift set is written as Set<Element>, where Element is the type that the set is allowed to store. Unlike arrays, sets don’t have an equivalent shorthand form.”
+
+var set = Set<Character>() //empty set
+
+set.insert("B")
+print("The set now has \(set.count) element which is \(set)")
+
+//set.append("b") //set don't have append so use insert.
+set = [] //now the set is empty
+
+//“Creating a Set with an Array Literal
+//You can also initialize a set with an array literal, as a shorthand way to write one or more values as a set collection.”
+
+var setOfMovies: Set<String> = ["Tenet","Prestige","Interstellar"]
+
+//“A set type can’t be inferred from an array literal alone, so the type Set must be explicitly declared. However, because of Swift’s type inference, you don’t have to write the type of the set’s elements if you’re initializing it with an array literal that contains values of just one type.”
+
+var movies: Set = ["Tenet","Prestige","Interstellar"]
+
+//Accessing and Modifying a Set
+
+/*You access and modify a set through following methods and properties:
+ 1. count
+ 2. insert
+ 3. remove
+ 4. removeAll
+ 5. isEmpty
+ 6. contains
+ */
+
+if movies.contains("Interstellar"){
+    print("This Nolan movie has score by Zimmer.")
+}
+
+
+//“Swift’s Set type doesn’t have a defined ordering. To iterate over the values of a set in a specific order, use the sorted() method, which returns the set’s elements as an array sorted using the < operator.”
+
+for i in movies.sorted(){
+    print(i)
+}
+
+
+//“Performing Set Operations
+//You can efficiently perform fundamental set operations, such as combining two sets together, determining which values two sets have in common, or determining whether two sets contain all, some, or none of the same values.”
+
+let oddDigits: Set = [1, 3, 5, 7, 9]
+let evenDigits: Set = [0, 2, 4, 6, 8]
+let singleDigitPrimeNumbers: Set = [2, 3, 5, 7]
+
+print(oddDigits.union(evenDigits).sorted())
+
+/*
+Use the “is equal” operator (==) to determine whether two sets contain all of the same values.
+
+Use the isSubset(of:) method to determine whether all of the values of a set are contained in the specified set.
+
+Use the isSuperset(of:) method to determine whether a set contains all of the values in a specified set.
+
+Use the isStrictSubset(of:) or isStrictSuperset(of:) methods to determine whether a set is a subset or superset, but not equal to, a specified set.
+
+Use the isDisjoint(with:) method to determine whether two sets have no values in common.
+*/
+var bigSet: Set = [0,1,2,3,4,5,6,7,8,9,10]
+
+print(bigSet.isSuperset(of: oddDigits))
+print(evenDigits.isSubset(of: bigSet))
+print(oddDigits.isDisjoint(with: evenDigits))
+
+//Dictionary Type Shorthand Syntax
+//The type of a Swift dictionary is written in full as Dictionary<Key, Value>, where Key is the type of value that can be used as a dictionary key, and Value is the type of value that the dictionary stores for those keys.
+
+
+//You can also write the type of a dictionary in shorthand form as [Key: Value]. Although the two forms are functionally identical, the shorthand form is preferred and is used throughout this guide when referring to the type of a dictionary.
+  
+
+var languages: [Int: String] = [:] //empty list
+
+languages[1] = "Python"
+print(languages)
+
+languages = [:] //again empty
+print(languages)
+
+/*
+ Creating a Dictionary with a Dictionary Literal
+ You can also initialize a dictionary with a dictionary literal, which has a similar syntax to the array literal seen earlier. A dictionary literal is a shorthand way to write one or more key-value pairs as a Dictionary collection.
+
+ A key-value pair is a combination of a key and a value. In a dictionary literal, the key and value in each key-value pair are separated by a colon. The key-value pairs are written as a list, separated by commas, surrounded by a pair of square brackets:
+
+*/
+
+languages = [1:"Python", 2:"Swift", 3:"JavaScript", 4:"Java", 5:"C++"]
+print(languages)
+
+//“As with arrays, you don’t have to write the type of the dictionary if you’re initializing it with a dictionary literal whose keys and values have consistent types. The initialization of airports could have been written in a shorter form instead:”
+
+var itemsToBring = [1:"Eggs", 2:"Milk", 3:"Bread"]
+
+
+//Accessing and Modifying a Dictionary
+
+/*You access and modify a set through following methods and properties:
+ 1. count
+ 2. isEmpty
+ 3. remove
+ 4. updateValue
+ */
+
+//you can add element to a dictionary like this:
+
+itemsToBring[4] = "Fruits"
+
+//“You can also use subscript syntax to change the value associated with a particular key:”
+
+itemsToBring[4] = "Vegetables"
+
+//“As an alternative to subscripting, use a dictionary’s updateValue(_:forKey:) method to set or update the value for a particular key. Like the subscript examples above, the updateValue(_:forKey:) method sets a value for a key if none exists, or updates the value if that key already exists. Unlike a subscript, however, the updateValue(_:forKey:) method returns the old value after performing an update. This enables you to check whether or not an update took place.
+
+itemsToBring.updateValue("Vitamins", forKey: 5)
+//itemsToBring.updateValue("Fruits", forKey: 4)
+
+print(itemsToBring)
+
+if let oldValue = itemsToBring.updateValue("Fruits", forKey: 4) {
+    print(itemsToBring)
+    print("The old value for key 4 was \(oldValue).")
+}
+
+//You can use subscript syntax to remove a key-value pair from a dictionary by assigning a value of nil for that key:
+
+itemsToBring[4] = nil
+print(itemsToBring)
+
+//“Alternatively, remove a key-value pair from a dictionary with the removeValue(forKey:) method. This method removes the key-value pair if it exists and returns the removed value, or returns nil if no value existed:”
+
+itemsToBring.removeValue(forKey: 5)
+
+//“Iterating Over a Dictionary
+//You can iterate over the key-value pairs in a dictionary with a for-in loop. Each item in the dictionary is returned as a (key, value) tuple, and you can decompose the tuple’s members into temporary constants or variables as part of the iteration:”
+
+
+for (k, vl) in itemsToBring{
+    print(k,":",vl)
+}
+
+//“You can also retrieve an iterable collection of a dictionary’s keys or values by accessing its keys and values properties:”
+
+for k in languages.keys{
+    for vl in languages.values{
+        print(k,"=",vl)
+    }
+}
+
+let k = [Int](languages.keys) //this makes a array of all the keys of dictionary.
+let vl = [String](languages.values) //this makes a array of all the values of dictionary.
+
+print(type(of: k))
+
+//“Swift’s Dictionary type doesn’t have a defined ordering. To iterate over the keys or values of a dictionary in a specific order, use the sorted() method on its keys or values property.”
+
