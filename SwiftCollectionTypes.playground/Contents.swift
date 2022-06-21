@@ -15,6 +15,7 @@ print(chap)
 
 //“Array Type Shorthand Syntax
 //The type of a Swift array is written in full as Array<Element>, where Element is the type of values the array is allowed to store. You can also write the type of an array in shorthand form as [Element]. Although the two forms are functionally identical, the shorthand form is preferred and is used throughout this guide when referring to the type of an array.”
+
 var arr1: [Int] = [7,3,3]
 print(arr1)
 
@@ -37,6 +38,13 @@ print(vehicles)
 //“Thanks to Swift’s type inference, you don’t have to write the type of the array if you’re initializing it with an array literal containing values of the same type. ”
 
 var car = ["BMW","Ferrari","Ford","Honda"]
+
+var d = ["tenet","batman begins","dark knight"]
+print(d.contains("dark knight"))
+
+d[d.count-1] = "prestige"
+print(d)
+
 
 
 //Accessing and Modifying an Array
@@ -96,9 +104,10 @@ for (indx,item) in car.enumerated() {
 var set = Set<Character>() //empty set
 
 set.insert("B")
+set.insert("C")
 print("The set now has \(set.count) element which is \(set)")
 
-//set.append("b") //set don't have append so use insert.
+//set.append("b") //set don't have 'append' so use 'insert'.
 set = [] //now the set is empty
 
 //“Creating a Set with an Array Literal
